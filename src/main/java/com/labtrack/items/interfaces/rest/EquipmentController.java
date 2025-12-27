@@ -6,6 +6,7 @@ import com.labtrack.items.domain.model.aggregates.Equipment;
 import com.labtrack.items.domain.model.commands.DeleteEquipmentCommand;
 import com.labtrack.items.domain.model.queries.*;
 import com.labtrack.items.domain.model.valueobjects.EquipmentId;
+import com.labtrack.items.domain.model.valueobjects.EquipmentStatus;
 import com.labtrack.items.interfaces.rest.resources.*;
 import com.labtrack.items.interfaces.rest.transform.*;
 import org.springframework.http.ResponseEntity;
@@ -90,11 +91,19 @@ public class EquipmentController {
 
         List<Equipment> result;
 
-        if (name != null && !name.isBlank()) {
-            result = queryService.handleFilterByName(name);
+        if (status != null && !status.isBlank()) {
+            try {
+                EquipmentStatus equipmentStatus =
+                        EquipmentStatus.valueOf(status.trim().toUpperCase());
 
-        } else if (status != null && !status.isBlank()) {
-            result = queryService.handleSearchByStatus(status);
+                result = queryService.handleSearchByStatus(equipmentStatus);
+
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.badRequest().build();
+            }
+
+        } else if (name != null && !name.isBlank()) {
+            result = queryService.handleFilterByName(name);
 
         } else {
             result = queryService.handleGetAll();

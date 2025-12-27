@@ -35,8 +35,7 @@ public class EquipmentQueryServiceImpl implements EquipmentQueryService {
     }
 
     @Override
-    public List<Equipment> handleSearchByStatus(String status) {
-        return equipmentRepository.findByStatus(EquipmentStatus.ACTIVE);
-
+    public List<Equipment> handleSearchByStatus(EquipmentStatus status) {
+        return equipmentRepository.findByStatus(status);
     }
 }
