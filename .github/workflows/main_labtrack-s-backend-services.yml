@@ -26,10 +26,6 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install
-        env:
-          DB_URL: ${{ secrets.DB_URL }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -53,9 +49,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_93C97F6B7BE54B048A59D14938EDCE73 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_84C4FA8E17F343C78C69A0163D6AF0F7 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_F3DFE61227C749B8AF2C921CA6EE5F26 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_6798CA16D9A345B482180EE4D532ADEA }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3D8962D08607438BADF4134CE89CE210 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0CAFCCA464BA4A65A853217B004F38EC }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
