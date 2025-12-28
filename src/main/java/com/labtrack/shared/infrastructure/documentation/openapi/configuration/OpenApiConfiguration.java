@@ -28,7 +28,7 @@ public class OpenApiConfiguration {
                                 .url("https://springdoc.org")))
                 .servers(List.of(
                         new Server().url("http://localhost:8080").description("Desarrollo Local"),
-                        new Server().url("https://labtrack-api.com").description("Producción")
+                        new Server().url("https://labtrack-backend-services-b6d4aahpbhf5etfz.azurewebsites.net").description("Producción Azure")
                 ))
                 .externalDocs(new ExternalDocumentation()
                         .description("LabTrack Documentation Repository")
